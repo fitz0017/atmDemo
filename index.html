@@ -23,8 +23,14 @@
   </head>
 
   <body>
-    <h1 style="font-family: Arial">ATM Machine</h1>
-    <!-- We will put our React component inside this div. -->
+    <div class="container bg-primary" style="margin-bottom: 2em">
+      <div class="row justify-content-center">
+        <div class="col-6 offset-md-2">
+          <h1 style="font-family: Arial">ATM Machine</h1>
+        </div>
+      </div>
+    </div>
+
     <div id="root"></div>
     <!-- Load React. -->
     <script
@@ -35,8 +41,7 @@
       src="https://unpkg.com/react-dom/umd/react-dom.development.js"
       crossorigin
     ></script>
-    <!-- Load our React component. -->
-
+    <!-- Load component. -->
     <script src="atm.jsx" defer type="text/babel"></script>
   </body>
 </html>

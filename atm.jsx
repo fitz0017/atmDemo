@@ -2,11 +2,13 @@ const ATMDeposit = ({ onChange, isDeposit, isValid }) => {
     const choice = ['Deposit', 'Cash Back'];
     console.log(`ATM isDeposit: ${isDeposit}`);
     return (
-      <label className="label huge">
+        <div className="col-6 card mx-auto">
+        <label className="label huge">
         <h3> {choice[Number(!isDeposit)]}</h3>
         <input id="number-input" type="number" width="200" onChange={onChange}></input>
         <input type="submit" disabled={!isValid} width="200" value="Submit" id="submit-input"></input>
       </label>
+      </div>
     );
   };
   
@@ -17,6 +19,7 @@ const ATMDeposit = ({ onChange, isDeposit, isValid }) => {
     const [isDeposit, setIsDeposit] = React.useState(true);
     const [atmMode, setAtmMode] = React.useState('');
     const [validTransaction, setValidTransaction] = React.useState(false);
+    const [txHistory, setTxHistory] = React.useState([]);
   
     let status = `Account Balance $ ${totalState} `;
     console.log(`Account Rendered with isDeposit: ${isDeposit}`);
@@ -51,14 +54,13 @@ const ATMDeposit = ({ onChange, isDeposit, isValid }) => {
     };
   
     return (
-        <div className="container mx-auto">
+        <div className="container">
             <div className="row">
-                <div className="col-9">
-      <form onSubmit={handleSubmit}>
-        <>
-          <h2 id="total">{status}</h2>
-          <label>Select an action below to continue</label>
-          <select onChange={(e) => handleModeSelect(e)} name="mode" id="mode-select">
+                <div className="col-6 card">
+                <form onSubmit={handleSubmit}>
+        <div className="row text-center mx-auto">
+          <label className="text-center">Select an action below to continue</label>
+          <select className="mx-auto" onChange={(e) => handleModeSelect(e)} name="mode" id="mode-select">
             <option id="no-selection" value=""></option>
             <option id="deposit-selection" value="Deposit">
               Deposit
@@ -67,21 +69,26 @@ const ATMDeposit = ({ onChange, isDeposit, isValid }) => {
               Cash Back
             </option>
           </select>
+          </div>
+
           <div className="row">
-            <div className="col-9">
-          {atmMode && (
+            <div className="col mx-auto">
+            {atmMode && (
             <ATMDeposit
               onChange={handleChange}
               isDeposit={isDeposit}
               isValid={validTransaction}
             ></ATMDeposit>
-          )}</div>
+          )}
           </div>
-        </>
+          </div>
       </form>
-      </div>
-      </div>
-      </div>
+    </div>
+        <div className="col-6 card order-last">
+            <h2 className="text-center" id="total">{status}</h2>
+          </div>
+    </div>
+</div>
     );
   };
   // ========================================
